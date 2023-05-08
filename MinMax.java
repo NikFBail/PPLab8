@@ -52,12 +52,17 @@ public class MinMax<T extends Comparable<T>> {
 	 * returns false. 
 	 * Throws a MinMaxNotInitializedException if min=max=null
 	 */
+	boolean inRange(T item) throws MinMaxNotInitializedException {
+		if (min == null && max == null) throw new MinMaxNotInitializedException();
+		if (item.compareTo(min) < 0 || item.compareTo(max) > 0) return false;
+		else return true;
+	}
 
-	boolean inRange(T item) {
-		if (item.compareTo(min) < 0 && item.compareTo(max) > 0) return true;
-		else return false; 
+	public class Compare implements Comparable<T> {
+		@Override
+		public int compareTo(T item) {
+			return this.compareTo(item);
+		}
 	}
 	
-
-
 }

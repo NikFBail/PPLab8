@@ -2,8 +2,9 @@ import java.lang.reflect.Method;
 import java.util.ArrayList;
 import java.util.function.Function;
 import java.util.function.Predicate;
+import java.lang.StringBuilder;
 
-public class Lambdas {
+public class Lambdas implements Function {
 
 	public static void main(String [] args) {
 		ArrayList<Integer> numbers = new ArrayList<>();
@@ -37,9 +38,18 @@ public class Lambdas {
 		}
 		return count;
 	}
-	public static <T,R> ArrayList<R> reverse(ArrayList<T> orig, Function func ){
-		ArrayList jorge = new ArrayList<R>(null);
-		return jorge;
+	/* Takes an arraylist of strings and a function
+	 * and returns an arraylist of reversed strings
+	 */
+	public static ArrayList<String> reverse(ArrayList<String> orig, Function func) {
+		ArrayList<String> res = new ArrayList<>(orig.size());
+		return res;
+	}
+
+	@Override
+	public Object apply(Object t) {
+		// TODO Auto-generated method stub
+		throw new UnsupportedOperationException("Unimplemented method 'apply'");
 	}
 	
 

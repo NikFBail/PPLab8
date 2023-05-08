@@ -3,7 +3,7 @@ import java.util.ArrayList;
 public class Examples {
 
 	// Static: one per class; non-static: one per instance (needs an instance)
-	public static void main(String[] args) {
+	public static void main(String[] args) throws MinMaxNotInitializedException {
 		int n = 2;
 		int m = 4;
 		
