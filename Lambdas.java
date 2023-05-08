@@ -38,12 +38,18 @@ public class Lambdas implements Function {
 		}
 		return count;
 	}
-	/* Takes an arraylist of strings and a function
+
+	/* 1. Takes an arraylist of strings and a function
 	 * and returns an arraylist of reversed strings
 	 */
 	public static ArrayList<String> reverse(ArrayList<String> orig, Function func) {
 		ArrayList<String> res = new ArrayList<>(orig.size());
 		return res;
+	}
+
+	public static String reverstring(String rev) {
+		StringBuilder StringRunner = new StringBuilder(rev);
+		return StringRunner.reverse().toString();
 	}
 
 	@Override
@@ -52,5 +58,8 @@ public class Lambdas implements Function {
 		throw new UnsupportedOperationException("Unimplemented method 'apply'");
 	}
 	
-
+	/* 2. Use function composition (using either compose or andThen method of a function)
+	 * to create a function that reverses and uppercases the strings.
+	 * Then use it on the given arraylist of strings
+	 */
 }
