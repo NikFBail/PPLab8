@@ -1,11 +1,8 @@
-import java.awt.image.AreaAveragingScaleFilter;
-import java.lang.reflect.Method;
 import java.lang.StringBuilder;
 import java.util.ArrayList;
 import java.util.function.Function;
 import java.util.function.Predicate;
 import java.util.function.ToIntFunction;
-import java.util.function.IntPredicate;
 
 
 public class Lambdas {
