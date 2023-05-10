@@ -1,12 +1,14 @@
+import java.awt.image.AreaAveragingScaleFilter;
 import java.lang.reflect.Method;
+import java.lang.StringBuilder;
 import java.util.ArrayList;
 import java.util.function.Function;
 import java.util.function.Predicate;
-import java.lang.StringBuilder;
+import java.util.function.ToIntFunction;
+import java.util.function.IntPredicate;
 
-// For Problem 2
-public class Lambdas implements Function {
 
+public class Lambdas {
 	public static void main(String [] args) {
 		ArrayList<Integer> numbers = new ArrayList<>();
 		ArrayList<String> strings = new ArrayList<>();
@@ -25,9 +27,44 @@ public class Lambdas implements Function {
 		Predicate<String> notSmall = (s) -> (s.length() >= 2);
 		Predicate<String> notLarge = (s) -> (s.length() <= 4);
 		int countMediumStrings = countElements(strings, notSmall.and(notLarge));
-		System.out.println(countMediumStrings); 
+		System.out.println(countMediumStrings);
 		
-		
+		System.out.println("Problem 2:");
+		System.out.println(strings);
+		ArrayList<String> reversed = ourMap(strings, reverString);
+		System.out.println(reversed);
+
+		ArrayList<String> stuffs = new ArrayList<>();
+		stuffs.add("Donut");
+		stuffs.add("Rowboat");
+		stuffs.add("George Washington");
+		stuffs.add("Banananananana");
+		System.out.println(stuffs);
+
+		ArrayList<String> reversedAndUpped = ourMap(stuffs, reverseUpper);
+		System.out.println(reversedAndUpped);
+
+		ArrayList<Integer> lengths = new ArrayList<>();
+		for(int i = 0; i < stuffs.size(); i++) {
+			Integer length = getLengths.apply(stuffs.get(i));
+			lengths.add(length);
+		}
+		System.out.println(lengths);
+
+		ArrayList<Animal> animals = new ArrayList<>();
+		animals.add(new Animal("Tiger" , 156));
+		animals.add(new Animal("Elephant", 723));
+		animals.add(new Animal("Snake", 24));
+
+		ArrayList<String> names = new ArrayList<>();
+		for(int i = 0; i < animals.size(); i++) {
+			String name = getName.apply(animals.get(i));
+			names.add(name);
+		}
+		System.out.println(names);
+
+		System.out.println("Problem 3:");
+
 	}
 	
 	public static <T> int countElements(ArrayList<T> theList, Predicate<T> cond) {
@@ -40,33 +77,35 @@ public class Lambdas implements Function {
 		return count;
 	}
 
-	/* 1. Takes an arraylist of strings and a function
-	 * and returns an arraylist of reversed strings
-	 */
-	public static ArrayList<String> reverse(ArrayList<String> orig, Function func) {
-		ArrayList<String> res = new ArrayList<>(orig.size());
+	// Problem 2
+	public static ArrayList<String> ourMap(ArrayList<String> strings, Function func) {
+		ArrayList<String> res = new ArrayList<>();
+		for(int i = 0; i < strings.size(); i++) {
+			String s = (String) func.apply(strings.get(i));
+			res.add(s);
+		}
 		return res;
 	}
 
-	public static String reverstring(String rev) {
-		StringBuilder StringRunner = new StringBuilder(rev);
-		return StringRunner.reverse().toString();
-	}
-
-	@Override
-	public Object apply(Object t) {
-		// TODO Auto-generated method stub
-		throw new UnsupportedOperationException("Unimplemented method 'apply'");
-	}
+	/* 1. Takes an arraylist of strings and a function
+	 * and returns an arraylist of reversed strings
+	 */
+	static Function<String, String> reverString = s -> {
+		StringBuilder sb = new StringBuilder(s);
+		return sb.reverse().toString();
+	};
 	
 	/* 2. Use function composition (using either compose or andThen method of a function)
 	 * to create a function that reverses and uppercases the strings.
 	 * Then use it on the given arraylist of strings
 	 */
+	static Function reverseUpper = reverString.andThen(String::toUpperCase);
 
 	/* 3. Pass an arrayList of strings and a function that creates an arrayList
 	 * of their lengths
 	 */
+	static Function<String, Integer> getLengths = s -> s.length();
 
 	/* 4. Pass an arrayList of Animals and return an arrayList of their names */
+	static Function<Animal, String> getName = s -> s.getName();
 }
