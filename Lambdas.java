@@ -4,6 +4,7 @@ import java.util.function.Function;
 import java.util.function.Predicate;
 import java.lang.StringBuilder;
 
+// For Problem 2
 public class Lambdas implements Function {
 
 	public static void main(String [] args) {
@@ -62,4 +63,10 @@ public class Lambdas implements Function {
 	 * to create a function that reverses and uppercases the strings.
 	 * Then use it on the given arraylist of strings
 	 */
+
+	/* 3. Pass an arrayList of strings and a function that creates an arrayList
+	 * of their lengths
+	 */
+
+	/* 4. Pass an arrayList of Animals and return an arrayList of their names */
 }
