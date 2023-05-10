@@ -65,6 +65,42 @@ public class Lambdas {
 
 		System.out.println("Problem 3:");
 
+		ArrayList<String> odds = new ArrayList<>();
+		for(int i = 0; i < stuffs.size(); i++) {
+			int size = oddLength.applyAsInt(stuffs.get(i));
+			if(!(size % 2 == 0)) {
+				odds.add(stuffs.get(i));
+			}
+		}
+		System.out.println(odds);
+
+		ArrayList<String> manyAs = new ArrayList<>();
+		for(int i = 0; i < stuffs.size(); i++) {
+			int count = countingAs.applyAsInt(stuffs.get(i));
+			if(count >= 2) {
+				manyAs.add(stuffs.get(i));
+			}
+		}
+		System.out.println(manyAs);
+
+		ArrayList<String> notManyAs = new ArrayList<>();
+		for(int i = 0; i < stuffs.size(); i++) {
+			int count = countingAs.applyAsInt(stuffs.get(i));
+			if(count <= 2) {
+				notManyAs.add(stuffs.get(i));
+			}
+		}
+		System.out.println(notManyAs);
+
+		ArrayList<Animal> swolAnimol = new ArrayList<>();
+		for(int i = 0; i < animals.size(); i++) {
+			int weight = lightWeight.applyAsInt(animals.get(i));
+			if(weight > 100) {
+				swolAnimol.add(animals.get(i));
+			}
+		}
+		System.out.println(swolAnimol);
+
 	}
 	
 	public static <T> int countElements(ArrayList<T> theList, Predicate<T> cond) {
@@ -108,4 +144,32 @@ public class Lambdas {
 
 	/* 4. Pass an arrayList of Animals and return an arrayList of their names */
 	static Function<Animal, String> getName = s -> s.getName();
+
+	// Problem 3
+
+
+	/* 1. Given an arrayList of strings, return an ArrayList of all its strings of odd length */
+	static ToIntFunction<String> oddLength = s -> s.length();
+
+	/* 2. Given an ArrayList of strings, return an ArrayList of all its strings that have more
+	 * than 2 letters 'a'
+	 */
+	static ToIntFunction<String> countingAs = s -> {
+		int count = 0;
+		for(int i = 0; i < s.length(); i++) {
+			if(s.charAt(i) == 'a') {
+				count++;
+			}
+		}
+		return count;
+	};
+
+	/* 3. Given an ArrayList of strings, return an ArrayList of all its strings that have fewer
+	 * than 2 letters 'a'
+	 */
+
+	 // Same code as part 2
+
+	/* 4. Given an ArrayList of animals, return an ArrayList only of animals that weigh more than 100 */
+	static ToIntFunction<Animal> lightWeight = s -> (int) s.getWeight();
 }
